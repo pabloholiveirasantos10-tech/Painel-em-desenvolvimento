@@ -3,21 +3,207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel Mestre do Projeto</title>
-    <style>
-        body { font-family: Arial, sans-serif; background: #f4f4f9; text-align: center; padding: 50px; }
-        .container { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); max-width: 500px; margin: auto; }
-        h1 { color: #333; }
-        .status { color: green; font-weight: bold; }
-    </style>
+    <title>Painel Administrativo</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <div class="container">
-        <h1>🖥️ Painel Mestre do Sistema</h1>
-        <p>Status do Projeto: <span class="status">Online e Seguro</span></p>
-        <hr>
-        <!-- O CÓDIGO DA EQUIPE ENTRARÁ LOGO ABAIXO -->
-        <p>Aguardando novas atualizações da equipe...</p>
+
+    <aside class="sidebar">
+        <div class="logo">
+            <span>PS</span>
+            <h2>Painel Mestre</h2>
+        </div>
+
+        <nav>
+            <button class="menu active" data-page="dashboard">Dashboard</button>
+            <button class="menu" data-page="usuarios">Usuários</button>
+            <button class="menu" data-page="configuracoes">Configurações</button>
+        </nav>
+
+        <button id="logout" class="logout">Sair</button>
+    </aside>
+
+    <main class="content">
+
+        <header>
+            <div>
+                <h1 id="page-title">Dashboard</h1>
+                <p>Bem-vindo ao painel administrativo.</p>
+            </div>
+
+            <div class="profile">
+                <div class="avatar">PS</div>
+                <span>Pablo</span>
+            </div>
+        </header>
+
+        <section id="dashboard" class="page active-page">
+
+            <div class="cards">
+
+                <div class="card">
+                    <span class="card-title">Usuários</span>
+                    <strong>1.248</strong>
+                    <small>+12% este mês</small>
+                </div>
+
+                <div class="card">
+                    <span class="card-title">Pedidos</span>
+                    <strong>326</strong>
+                    <small>+8% este mês</small>
+                </div>
+
+                <div class="card">
+                    <span class="card-title">Faturamento</span>
+                    <strong>R$ 18.450</strong>
+                    <small>+15% este mês</small>
+                </div>
+
+                <div class="card">
+                    <span class="card-title">Pendentes</span>
+                    <strong>24</strong>
+                    <small>Precisam de atenção</small>
+                </div>
+
+            </div>
+
+            <div class="panel">
+                <div class="panel-header">
+                    <div>
+                        <h2>Atividades recentes</h2>
+                        <p>Últimas ações realizadas no sistema.</p>
+                    </div>
+
+                    <button id="newActivity" class="primary-button">
+                        Nova atividade
+                    </button>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Usuário</th>
+                            <th>Ação</th>
+                            <th>Data</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="activityTable">
+                        <tr>
+                            <td>Pablo</td>
+                            <td>Login realizado</td>
+                            <td>Hoje, 10:42</td>
+                            <td><span class="status success">Concluído</span></td>
+                        </tr>
+
+                        <tr>
+                            <td>Lucas</td>
+                            <td>Novo cadastro</td>
+                            <td>Hoje, 09:35</td>
+                            <td><span class="status success">Concluído</span></td>
+                        </tr>
+
+                        <tr>
+                            <td>Marcos</td>
+                            <td>Atualização de perfil</td>
+                            <td>Ontem, 18:20</td>
+                            <td><span class="status pending">Pendente</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+
+        <section id="usuarios" class="page">
+
+            <div class="panel">
+                <div class="panel-header">
+                    <div>
+                        <h2>Usuários</h2>
+                        <p>Gerencie os usuários do sistema.</p>
+                    </div>
+
+                    <button id="addUser" class="primary-button">
+                        + Adicionar usuário
+                    </button>
+                </div>
+
+                <div class="user-list">
+
+                    <div class="user">
+                        <div class="avatar">PS</div>
+                        <div>
+                            <strong>Pablo Santos</strong>
+                            <span>Administrador</span>
+                        </div>
+                    </div>
+
+                    <div class="user">
+                        <div class="avatar">LC</div>
+                        <div>
+                            <strong>Lucas Costa</strong>
+                            <span>Moderador</span>
+                        </div>
+                    </div>
+
+                    <div class="user">
+                        <div class="avatar">MS</div>
+                        <div>
+                            <strong>Marcos Silva</strong>
+                            <span>Usuário</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </section>
+
+        <section id="configuracoes" class="page">
+
+            <div class="panel">
+
+                <h2>Configurações</h2>
+                <p>Configurações gerais do painel.</p>
+
+                <div class="setting">
+                    <div>
+                        <strong>Modo escuro</strong>
+                        <span>Ativar aparência escura.</span>
+                    </div>
+
+                    <label class="switch">
+                        <input type="checkbox" id="darkMode">
+                        <span></span>
+                    </label>
+                </div>
+
+                <div class="setting">
+                    <div>
+                        <strong>Notificações</strong>
+                        <span>Receber notificações do sistema.</span>
+                    </div>
+
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span></span>
+                    </label>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <div id="toast" class="toast">
+        Ação realizada com sucesso!
     </div>
+
+    <script src="script.js"></script>
+
 </body>
 </html>
