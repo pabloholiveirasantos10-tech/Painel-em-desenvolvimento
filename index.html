@@ -1,214 +1,84 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painel Administrativo</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Painel — Projeto em Equipe</title>
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-    <aside class="sidebar">
-        <div class="logo">
-            <span>PS</span>
-            <h2>Painel Mestre</h2>
+<header class="topbar">
+    <div class="topbar-brand">
+        <span class="brand-mark">PE</span>
+        <div>
+            <h1>Painel do Projeto</h1>
+            <p>Acompanhamento de tarefas entre Pablo e Gabriela</p>
+        </div>
+    </div>
+    <nav class="filtros" id="filtros">
+        <button data-responsavel="Todos" class="ativo">Todos</button>
+        <button data-responsavel="Pablo">Pablo</button>
+        <button data-responsavel="Gabriela">Gabriela</button>
+    </nav>
+</header>
+
+<main>
+    <section class="resumo" id="resumo">
+        <div class="cartao">
+            <span class="cartao-numero" id="total-tarefas">0</span>
+            <span class="cartao-rotulo">Tarefas no total</span>
+        </div>
+        <div class="cartao cartao-fazer">
+            <span class="cartao-numero" id="total-a-fazer">0</span>
+            <span class="cartao-rotulo">A fazer</span>
+        </div>
+        <div class="cartao cartao-andamento">
+            <span class="cartao-numero" id="total-andamento">0</span>
+            <span class="cartao-rotulo">Em andamento</span>
+        </div>
+        <div class="cartao cartao-concluido">
+            <span class="cartao-numero" id="total-concluido">0</span>
+            <span class="cartao-rotulo">Concluídas</span>
+        </div>
+    </section>
+
+    <section class="conteudo">
+        <div class="painel-form">
+            <h2>Nova tarefa</h2>
+            <form id="form-tarefa">
+                <label for="titulo">Título</label>
+                <input type="text" id="titulo" name="titulo" required maxlength="150" placeholder="Ex.: Ajustar validação do formulário">
+
+                <label for="descricao">Descrição</label>
+                <textarea id="descricao" name="descricao" rows="3" placeholder="Detalhes da tarefa (opcional)"></textarea>
+
+                <label for="responsavel">Responsável</label>
+                <select id="responsavel" name="responsavel">
+                    <option value="Pablo">Pablo</option>
+                    <option value="Gabriela">Gabriela</option>
+                </select>
+
+                <label for="status">Status inicial</label>
+                <select id="status" name="status">
+                    <option value="A Fazer">A Fazer</option>
+                    <option value="Em Andamento">Em Andamento</option>
+                    <option value="Concluído">Concluído</option>
+                </select>
+
+                <button type="submit">Adicionar tarefa</button>
+            </form>
         </div>
 
-        <nav>
-            <button class="menu active" data-page="dashboard">Dashboard</button>
-            <button class="menu" data-page="usuarios">Usuários</button>
-            <button class="menu" data-page="configuracoes">Configurações</button>
-        </nav>
-
-        <button id="logout" class="logout">Sair</button>
-    </aside>
-
-    <main class="content">
-
-        <header>
-            <div>
-                <h1 id="page-title">Dashboard</h1>
-                <p>Bem-vindo ao painel administrativo.</p>
+        <div class="painel-lista">
+            <h2 id="titulo-lista">Tarefas (Todos)</h2>
+            <div id="lista-container">
+                <p class="vazio">Carregando...</p>
             </div>
+        </div>
+    </section>
+</main>
 
-            <div class="profile">
-                <div class="avatar">PS</div>
-                <span>Pablo</span>
-            </div>
-
-            <button id="novoBotao" class="primary-button">
-                TESTE DE BOTÃO
-            </button>
-
-        </header>
-
-        <section id="dashboard" class="page active-page">
-
-            <div class="cards">
-
-                <div class="card">
-                    <span class="card-title">Usuários</span>
-                    <strong>1.248</strong>
-                    <small>+12% este mês</small>
-                </div>
-
-                <div class="card">
-                    <span class="card-title">Pedidos</span>
-                    <strong>326</strong>
-                    <small>+8% este mês</small>
-                </div>
-
-                <div class="card">
-                    <span class="card-title">Faturamento</span>
-                    <strong>R$ 18.450</strong>
-                    <small>+15% este mês</small>
-                </div>
-
-                <div class="card">
-                    <span class="card-title">Pendentes</span>
-                    <strong>24</strong>
-                    <small>Precisam de atenção</small>
-                </div>
-
-            </div>
-
-            <div class="panel">
-                <div class="panel-header">
-                    <div>
-                        <h2>Atividades recentes</h2>
-                        <p>Últimas ações realizadas no sistema.</p>
-                    </div>
-
-                    <button id="newActivity" class="primary-button">
-                        Nova atividade
-                    </button>
-                </div>
-
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Usuário</th>
-                            <th>Ação</th>
-                            <th>Data</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-
-                    <tbody id="activityTable">
-                        <tr>
-                            <td>Pablo</td>
-                            <td>Login realizado</td>
-                            <td>Hoje, 10:42</td>
-                            <td><span class="status success">Concluído</span></td>
-                        </tr>
-
-                        <tr>
-                            <td>Lucas</td>
-                            <td>Novo cadastro</td>
-                            <td>Hoje, 09:35</td>
-                            <td><span class="status success">Concluído</span></td>
-                        </tr>
-
-                        <tr>
-                            <td>Marcos</td>
-                            <td>Atualização de perfil</td>
-                            <td>Ontem, 18:20</td>
-                            <td><span class="status pending">Pendente</span></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-        </section>
-
-        <section id="usuarios" class="page">
-
-            <div class="panel">
-                <div class="panel-header">
-                    <div>
-                        <h2>Usuários</h2>
-                        <p>Gerencie os usuários do sistema.</p>
-                    </div>
-
-                    <button id="addUser" class="primary-button">
-                        + Adicionar usuário
-                    </button>
-                </div>
-
-                <div class="user-list">
-
-                    <div class="user">
-                        <div class="avatar">PS</div>
-                        <div>
-                            <strong>Pablo Santos</strong>
-                            <span>Administrador</span>
-                        </div>
-                    </div>
-
-                    <div class="user">
-                        <div class="avatar">LC</div>
-                        <div>
-                            <strong>Lucas Costa</strong>
-                            <span>Moderador</span>
-                        </div>
-                    </div>
-
-                    <div class="user">
-                        <div class="avatar">MS</div>
-                        <div>
-                            <strong>Marcos Silva</strong>
-                            <span>Usuário</span>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-        </section>
-
-        <section id="configuracoes" class="page">
-
-            <div class="panel">
-
-                <h2>Configurações</h2>
-                <p>Configurações gerais do painel.</p>
-
-                <div class="setting">
-                    <div>
-                        <strong>Modo escuro</strong>
-                        <span>Ativar aparência escura.</span>
-                    </div>
-
-                    <label class="switch">
-                        <input type="checkbox" id="darkMode">
-                        <span></span>
-                    </label>
-                </div>
-
-                <div class="setting">
-                    <div>
-                        <strong>Notificações</strong>
-                        <span>Receber notificações do sistema.</span>
-                    </div>
-
-                    <label class="switch">
-                        <input type="checkbox" checked>
-                        <span></span>
-                    </label>
-                </div>
-
-            </div>
-
-        </section>
-
-    </main>
-
-    <div id="toast" class="toast">
-        Ação realizada com sucesso!
-    </div>
-
-    <script src="script.js"></script>
-
+<script src="script.js"></script>
 </body>
 </html>
